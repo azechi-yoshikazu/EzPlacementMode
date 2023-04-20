@@ -6,11 +6,32 @@
 #include "Engine/DeveloperSettings.h"
 #include "EasyPlacementModeSettings.generated.h"
 
-UCLASS(config=Engine, meta=(DisplayName="Ez Placement Mode"))
+USTRUCT()
+struct FEzPlacementCategory
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditDefaultsOnly)
+	FText Name;
+
+	UPROPERTY(EditDefaultsOnly)
+	int32 Priority = 100;
+
+	FName GetHandle() const
+	{
+		return FName(Name.ToString());
+	}
+};
+
+UCLASS(config=Engine, defaultconfig, meta=(DisplayName="Ez Placement Mode"))
 class UEasyPlacementModeSettings : public UDeveloperSettings
 {
 	GENERATED_BODY()
 
 public:
 	UEasyPlacementModeSettings(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+
+public:
+	UPROPERTY(EditDefaultsOnly)
+	TArray<FEzPlacementCategory> Categories;
 };
