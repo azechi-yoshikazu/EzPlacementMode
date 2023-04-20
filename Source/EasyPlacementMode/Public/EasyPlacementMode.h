@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
+class FPlacementModeID;
 class UEasyPlacementModeSettings;
 
 
@@ -19,4 +20,7 @@ private:
 	void UnregisterPlacementCategory(const UEasyPlacementModeSettings& Settings);
 	
 	void HandleSettingsChanged(UObject* Object, struct FPropertyChangedEvent& PropertyChangedEvent);
+
+private:
+	TArray<FName> RegisteredCategories;
 };

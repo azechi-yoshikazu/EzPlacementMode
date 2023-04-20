@@ -17,6 +17,9 @@ struct FEzPlacementCategory
 	UPROPERTY(EditDefaultsOnly)
 	int32 Priority = 100;
 
+	UPROPERTY(EditDefaultsOnly)
+	TArray<AActor*> Classes;
+
 	FName GetHandle() const
 	{
 		return FName(Name.ToString());
