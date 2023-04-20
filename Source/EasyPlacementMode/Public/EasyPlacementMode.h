@@ -5,9 +5,18 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
+class UEasyPlacementModeSettings;
+
+
 class FEasyPlacementModeModule : public IModuleInterface
 {
 public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
+
+private:
+	void RegisterPlacementCategory(const UEasyPlacementModeSettings& Settings);
+	void UnregisterPlacementCategory(const UEasyPlacementModeSettings& Settings);
+	
+	void HandleSettingsChanged(UObject* Object, struct FPropertyChangedEvent& PropertyChangedEvent);
 };
