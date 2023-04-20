@@ -30,6 +30,7 @@ public class EasyPlacementMode : ModuleRules
 				"SlateCore",
 				"UnrealEd",
 				"DeveloperSettings",
+				"PlacementMode"
 			});
 	}
 }
