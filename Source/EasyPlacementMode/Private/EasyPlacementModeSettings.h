@@ -35,6 +35,6 @@ public:
 	UEasyPlacementModeSettings(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 public:
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(config, EditDefaultsOnly)
 	TArray<FEzPlacementCategory> Categories;
 };
