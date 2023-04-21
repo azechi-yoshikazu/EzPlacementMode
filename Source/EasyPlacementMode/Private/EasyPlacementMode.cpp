@@ -51,7 +51,7 @@ void FEasyPlacementModeModule::RegisterPlacementCategory(const UEasyPlacementMod
 
 			for (int32 Index = 0; Index < Category.Classes.Num(); Index++)
 			{
-				if (UObject* Object = Category.Classes[Index])
+				if (UObject* Object = Category.Classes[Index].TryLoad())
 				{
 					FAssetData AssetData(Object);
 					UActorFactory* UseActorFactory = nullptr;

@@ -17,8 +17,8 @@ struct FEzPlacementCategory
 	UPROPERTY(EditDefaultsOnly)
 	int32 Priority = 100;
 
-	UPROPERTY(EditDefaultsOnly)
-	TArray<AActor*> Classes;
+	UPROPERTY(EditDefaultsOnly, meta = (MetaClass = "Actor", OnlyPlaceable))
+	TArray<FSoftClassPath> Classes;
 
 	FName GetHandle() const
 	{
