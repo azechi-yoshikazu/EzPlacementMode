@@ -6,12 +6,16 @@
 #include "Editor.h"
 #include "PlacementMode/Public/IPlacementModeModule.h"
 
+// EzPlacementMode
 #include "EzPlacementModeSettings.h"
+#include "EzPlacementModeStyle.h"
 
 #define LOCTEXT_NAMESPACE "FEzPlacementModeModule"
 
 void FEzPlacementModeModule::StartupModule()
 {
+	StyleSet = MakeShared<FEzPlacementModeStyleSet>();
+
 	UEzPlacementModeSettings* Settings = GetMutableDefault<UEzPlacementModeSettings>();
 	if (Settings != nullptr)
 	{
@@ -40,7 +44,7 @@ void FEzPlacementModeModule::RegisterPlacementCategory(const UEzPlacementModeSet
 
 		const FName UniqueID = Category.GetHandle();
 
-		const FPlacementCategoryInfo CategoryInfo(Category.Name, FSlateIcon(FAppStyle::GetAppStyleSetName(), "PlacementBrowser.Icons.Basic"), UniqueID, TEXT("PMEzPlacementMode"), Category.Priority);
+		const FPlacementCategoryInfo CategoryInfo(Category.Name, FSlateIcon(FEzPlacementModeStyleSet::NAME_StyleSetName, "Icons.Category"), UniqueID, TEXT("PMEzPlacementMode"), Category.Priority);
 		if (!PlacementModeModule.RegisterPlacementCategory(CategoryInfo))
 		{
 			continue;

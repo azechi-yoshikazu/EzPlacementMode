@@ -30,7 +30,8 @@ public class EzPlacementMode : ModuleRules
 				"SlateCore",
 				"UnrealEd",
 				"DeveloperSettings",
-				"PlacementMode"
+				"PlacementMode",
+				"Projects",
 			});
 	}
 }

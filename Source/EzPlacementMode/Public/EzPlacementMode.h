@@ -6,6 +6,7 @@
 #include "Modules/ModuleManager.h"
 
 class FPlacementModeID;
+class FEzPlacementModeStyleSet;
 class UEzPlacementModeSettings;
 
 
@@ -22,6 +23,7 @@ private:
 	void HandleSettingsChanged(UObject* Object, struct FPropertyChangedEvent& PropertyChangedEvent);
 
 private:
+	TSharedPtr<FEzPlacementModeStyleSet> StyleSet;
 	// For unregister process
 	TArray<FName> RegisteredCategories;
 };
