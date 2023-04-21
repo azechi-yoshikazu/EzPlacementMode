@@ -1,33 +1,33 @@
 // Copyright 2023 Yoshikazu Azechi All Rights Reserved.
 
-#include "EasyPlacementMode.h"
+#include "EzPlacementMode.h"
 
 // Engine
 #include "Editor.h"
 #include "PlacementMode/Public/IPlacementModeModule.h"
 
-#include "EasyPlacementModeSettings.h"
+#include "EzPlacementModeSettings.h"
 
-#define LOCTEXT_NAMESPACE "FEasyPlacementModeModule"
+#define LOCTEXT_NAMESPACE "FEzPlacementModeModule"
 
-void FEasyPlacementModeModule::StartupModule()
+void FEzPlacementModeModule::StartupModule()
 {
-	UEasyPlacementModeSettings* Settings = GetMutableDefault<UEasyPlacementModeSettings>();
+	UEzPlacementModeSettings* Settings = GetMutableDefault<UEzPlacementModeSettings>();
 	if (Settings != nullptr)
 	{
 		RegisterPlacementCategory(*Settings);
 
-		Settings->OnSettingChanged().AddRaw(this, &FEasyPlacementModeModule::HandleSettingsChanged);
+		Settings->OnSettingChanged().AddRaw(this, &FEzPlacementModeModule::HandleSettingsChanged);
 	}
 
 }
 
-void FEasyPlacementModeModule::ShutdownModule()
+void FEzPlacementModeModule::ShutdownModule()
 {
 	UnregisterPlacementCategory();
 }
 
-void FEasyPlacementModeModule::RegisterPlacementCategory(const UEasyPlacementModeSettings& Settings)
+void FEzPlacementModeModule::RegisterPlacementCategory(const UEzPlacementModeSettings& Settings)
 {
 	IPlacementModeModule& PlacementModeModule = IPlacementModeModule::Get();
 
@@ -63,7 +63,7 @@ void FEasyPlacementModeModule::RegisterPlacementCategory(const UEasyPlacementMod
 	}
 }
 
-void FEasyPlacementModeModule::UnregisterPlacementCategory()
+void FEzPlacementModeModule::UnregisterPlacementCategory()
 {
 	if (IPlacementModeModule::IsAvailable())
 	{
@@ -76,11 +76,11 @@ void FEasyPlacementModeModule::UnregisterPlacementCategory()
 	RegisteredCategories.Empty();
 }
 
-void FEasyPlacementModeModule::HandleSettingsChanged(UObject* Object, struct FPropertyChangedEvent& PropertyChangedEvent)
+void FEzPlacementModeModule::HandleSettingsChanged(UObject* Object, struct FPropertyChangedEvent& PropertyChangedEvent)
 {
 	UnregisterPlacementCategory();
 
-	UEasyPlacementModeSettings* Settings = GetMutableDefault<UEasyPlacementModeSettings>();
+	UEzPlacementModeSettings* Settings = GetMutableDefault<UEzPlacementModeSettings>();
 	if (Settings != nullptr)
 	{
 		RegisterPlacementCategory(*Settings);
@@ -89,4 +89,4 @@ void FEasyPlacementModeModule::HandleSettingsChanged(UObject* Object, struct FPr
 
 #undef LOCTEXT_NAMESPACE
 
-IMPLEMENT_MODULE(FEasyPlacementModeModule, EasyPlacementMode)
+IMPLEMENT_MODULE(FEzPlacementModeModule, EzPlacementMode)

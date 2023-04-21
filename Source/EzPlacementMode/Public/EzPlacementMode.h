@@ -6,17 +6,17 @@
 #include "Modules/ModuleManager.h"
 
 class FPlacementModeID;
-class UEasyPlacementModeSettings;
+class UEzPlacementModeSettings;
 
 
-class FEasyPlacementModeModule : public IModuleInterface
+class FEzPlacementModeModule : public IModuleInterface
 {
 public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 
 private:
-	void RegisterPlacementCategory(const UEasyPlacementModeSettings& Settings);
+	void RegisterPlacementCategory(const UEzPlacementModeSettings& Settings);
 	void UnregisterPlacementCategory();
 	
 	void HandleSettingsChanged(UObject* Object, struct FPropertyChangedEvent& PropertyChangedEvent);

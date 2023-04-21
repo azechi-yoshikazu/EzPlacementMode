@@ -1,1 +1,1 @@
-# EasyPlacementMode
+# EzPlacementMode

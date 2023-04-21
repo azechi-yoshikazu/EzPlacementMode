@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DeveloperSettings.h"
-#include "EasyPlacementModeSettings.generated.h"
+#include "EzPlacementModeSettings.generated.h"
 
 USTRUCT()
 struct FEzPlacementCategory
@@ -27,12 +27,12 @@ struct FEzPlacementCategory
 };
 
 UCLASS(config=Engine, defaultconfig, meta=(DisplayName="Ez Placement Mode"))
-class UEasyPlacementModeSettings : public UDeveloperSettings
+class UEzPlacementModeSettings : public UDeveloperSettings
 {
 	GENERATED_BODY()
 
 public:
-	UEasyPlacementModeSettings(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+	UEzPlacementModeSettings(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 public:
 	UPROPERTY(config, EditDefaultsOnly)
