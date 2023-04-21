@@ -8,12 +8,17 @@ public class EasyPlacementMode : ModuleRules
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
+		PrivateIncludePaths.AddRange(
+			new string[] 
+			{
+				"EasyPlacementMode/Private",
+			});
+
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
 				"Core",
-			}
-			);
+			});
 			
 		
 		PrivateDependencyModuleNames.AddRange(
@@ -23,8 +28,9 @@ public class EasyPlacementMode : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
+				"UnrealEd",
 				"DeveloperSettings",
-			}
-			);
+				"PlacementMode"
+			});
 	}
 }
