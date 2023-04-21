@@ -17,10 +17,11 @@ public:
 
 private:
 	void RegisterPlacementCategory(const UEasyPlacementModeSettings& Settings);
-	void UnregisterPlacementCategory(const UEasyPlacementModeSettings& Settings);
+	void UnregisterPlacementCategory();
 	
 	void HandleSettingsChanged(UObject* Object, struct FPropertyChangedEvent& PropertyChangedEvent);
 
 private:
+	// For unregister process
 	TArray<FName> RegisteredCategories;
 };

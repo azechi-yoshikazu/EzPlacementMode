@@ -24,11 +24,7 @@ void FEasyPlacementModeModule::StartupModule()
 
 void FEasyPlacementModeModule::ShutdownModule()
 {
-	UEasyPlacementModeSettings* Settings = GetMutableDefault<UEasyPlacementModeSettings>();
-	if (Settings != nullptr)
-	{
-		UnregisterPlacementCategory(*Settings);
-	}
+	UnregisterPlacementCategory();
 }
 
 void FEasyPlacementModeModule::RegisterPlacementCategory(const UEasyPlacementModeSettings& Settings)
@@ -80,7 +76,7 @@ void FEasyPlacementModeModule::RegisterPlacementCategory(const UEasyPlacementMod
 	}
 }
 
-void FEasyPlacementModeModule::UnregisterPlacementCategory(const UEasyPlacementModeSettings& Settings)
+void FEasyPlacementModeModule::UnregisterPlacementCategory()
 {
 	if (IPlacementModeModule::IsAvailable())
 	{
@@ -95,11 +91,11 @@ void FEasyPlacementModeModule::UnregisterPlacementCategory(const UEasyPlacementM
 
 void FEasyPlacementModeModule::HandleSettingsChanged(UObject* Object, struct FPropertyChangedEvent& PropertyChangedEvent)
 {
+	UnregisterPlacementCategory();
+
 	UEasyPlacementModeSettings* Settings = GetMutableDefault<UEasyPlacementModeSettings>();
 	if (Settings != nullptr)
 	{
-		UnregisterPlacementCategory(*Settings);
-
 		RegisterPlacementCategory(*Settings);
 	}
 }
