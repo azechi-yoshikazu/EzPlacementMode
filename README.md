@@ -6,7 +6,7 @@
 </h1>
 <p align="center">
   <strong>
-    Place Actorsタブへのカテゴリ追加を簡単に行えるようにするプラグイン
+    Place Actorsパネルへのカテゴリ追加を簡単に行えるようにするプラグイン
   </strong>
 </p>
 <div align="center">
@@ -28,6 +28,18 @@
 </p>
 
 ## How To Use
+### カテゴリの追加方法
+`Project Settings > Plugins > Ez Placement Mode`を開き、`Ez Placement Mode Settings`の`Categories`を追加してください。
+
+### カテゴリ設定
+- ***Name***
+  - エディタ上で表示される、このカテゴリの名称です。
+  - ※この項目が空の場合はエディタへの表示は行われません
+- ***Priority***
+  - カテゴリの優先度です。低い数値ほど優先度が高く、先に表示されるようになります。
+  - 初期値の100を基準として大きい数値を使用するのがおすすめです。
+- ***Actors***
+  - カテゴリ内で表示したい`Actor`のリストです。
 
 ## Download
 リリースから[最新バージョン](https://github.com/azechi-yoshikazu/EzPlacementMode/releases/latest)をダウンロードすることができます。
