@@ -52,11 +52,11 @@ void FEzPlacementModeModule::RegisterPlacementCategory(const UEzPlacementModeSet
 
 		RegisteredCategories.Add(UniqueID);
 
-		for (int32 Index = 0; Index < Category.Classes.Num(); Index++)
+		for (int32 Index = 0; Index < Category.Actors.Num(); Index++)
 		{
-			if (UObject* Object = Category.Classes[Index].TryLoad())
+			if (UObject* ActorObject = Category.Actors[Index].TryLoad())
 			{
-				const FAssetData AssetData(Object);
+				const FAssetData AssetData(ActorObject);
 
 				UActorFactory* ActorFactory = GEditor ? GEditor->FindActorFactoryForActorClass(AssetData.GetClass()) : nullptr;
 
