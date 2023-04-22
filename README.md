@@ -6,7 +6,7 @@
 </h1>
 <p align="center">
   <strong>
-    Place Actorsパネルへのカテゴリ追加を簡単に行えるようにするプラグイン
+    Place Actorsパネルへのカテゴリ追加を簡単に行えるようにするUnreal Engine 5向けのプラグイン
   </strong>
 </p>
 <div align="center">
@@ -16,9 +16,10 @@
   <a href="https://github.com/azechi-yoshikazu/EzPlacementMode/releases/latest">
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/azechi-yoshikazu/EzPlacementMode?style=flat-square">
   </a>
-  <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/azechi-yoshikazu/EzPlacementMode?style=flat-square">
 </div>
 <p align="center">
+  <a href="#introduction">Introduction</a> | 
+  <a href="#supported-version">Supported Version</a> | 
   <a href="#how-to-use">How To Use</a> | 
   <a href="#download">Download</a> | 
   <a href="#license">License</a>
@@ -26,6 +27,16 @@
 <p align="center">
   <img src="https://github.com/azechi-yoshikazu/Images/blob/main/EzPlacementMode/overview.gif" width="90%">
 </p>
+
+## Introduction
+Unreal Engine 5向けのエディタ拡張プラグインです。
+
+`Place Actors`パネルは通常、エディタ標準で用意されたカテゴリのみ表示されます。
+
+C++を使用する必要のあるカテゴリ追加を、エディタから行うことができるようにするプラグインです。
+
+## Supported Version
+Unreal Engine 5.x
 
 ## How To Use
 ### カテゴリの追加方法
