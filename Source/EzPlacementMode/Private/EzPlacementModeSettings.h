@@ -6,17 +6,20 @@
 #include "Engine/DeveloperSettings.h"
 #include "EzPlacementModeSettings.generated.h"
 
+/**
+ * A struct represents user-defined category information
+ */
 USTRUCT()
 struct FEzPlacementCategory
 {
 	GENERATED_BODY()
-
+	// This category's display name
 	UPROPERTY(EditDefaultsOnly)
 	FText Name;
-
+	// this category's priority (lowest first)
 	UPROPERTY(EditDefaultsOnly)
 	int32 Priority = 100;
-
+	// A list of actors to display in this category
 	UPROPERTY(EditDefaultsOnly, meta = (MetaClass = "Actor", OnlyPlaceable))
 	TArray<FSoftClassPath> Actors;
 
@@ -26,6 +29,9 @@ struct FEzPlacementCategory
 	}
 };
 
+/**
+ * A class that provides customization settings for placing objects in Project Settings for a user
+ */
 UCLASS(config=Engine, defaultconfig, meta=(DisplayName="Ez Placement Mode"))
 class UEzPlacementModeSettings : public UDeveloperSettings
 {
