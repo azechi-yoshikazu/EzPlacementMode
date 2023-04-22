@@ -11,13 +11,13 @@ struct FEzPlacementCategory
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode")
 	FText Name;
 
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode")
 	int32 Priority = 100;
 
-	UPROPERTY(EditDefaultsOnly, meta = (MetaClass = "Actor", OnlyPlaceable))
+	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (MetaClass = "Actor", OnlyPlaceable))
 	TArray<FSoftClassPath> Classes;
 
 	FName GetHandle() const
@@ -35,6 +35,6 @@ public:
 	UEzPlacementModeSettings(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 public:
-	UPROPERTY(config, EditDefaultsOnly)
+	UPROPERTY(config, EditDefaultsOnly, Category = "Ez Placement Mode")
 	TArray<FEzPlacementCategory> Categories;
 };
