@@ -2,7 +2,7 @@
 	"FileVersion": 3,
 	"Version": 1,
 	"VersionName": "1.0",
-	"FriendlyName": "EasyPlacementMode",
+	"FriendlyName": "EzPlacementMode",
 	"Description": "",
 	"Category": "Editor",
 	"CreatedBy": "Yoshikazu Azechi",
@@ -10,13 +10,13 @@
 	"DocsURL": "",
 	"MarketplaceURL": "",
 	"SupportURL": "",
-	"CanContainContent": false,
+	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
 	"Modules": [
 		{
-			"Name": "EasyPlacementMode",
+			"Name": "EzPlacementMode",
 			"Type": "EditorNoCommandlet",
 			"LoadingPhase": "PostEngineInit"
 		}

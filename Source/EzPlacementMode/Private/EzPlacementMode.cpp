@@ -1,33 +1,37 @@
 // Copyright 2023 Yoshikazu Azechi All Rights Reserved.
 
-#include "EasyPlacementMode.h"
+#include "EzPlacementMode.h"
 
 // Engine
 #include "Editor.h"
 #include "PlacementMode/Public/IPlacementModeModule.h"
 
-#include "EasyPlacementModeSettings.h"
+// EzPlacementMode
+#include "EzPlacementModeSettings.h"
+#include "EzPlacementModeStyle.h"
 
-#define LOCTEXT_NAMESPACE "FEasyPlacementModeModule"
+#define LOCTEXT_NAMESPACE "FEzPlacementModeModule"
 
-void FEasyPlacementModeModule::StartupModule()
+void FEzPlacementModeModule::StartupModule()
 {
-	UEasyPlacementModeSettings* Settings = GetMutableDefault<UEasyPlacementModeSettings>();
+	StyleSet = MakeShared<FEzPlacementModeStyleSet>();
+
+	UEzPlacementModeSettings* Settings = GetMutableDefault<UEzPlacementModeSettings>();
 	if (Settings != nullptr)
 	{
 		RegisterPlacementCategory(*Settings);
 
-		Settings->OnSettingChanged().AddRaw(this, &FEasyPlacementModeModule::HandleSettingsChanged);
+		Settings->OnSettingChanged().AddRaw(this, &FEzPlacementModeModule::HandleSettingsChanged);
 	}
 
 }
 
-void FEasyPlacementModeModule::ShutdownModule()
+void FEzPlacementModeModule::ShutdownModule()
 {
 	UnregisterPlacementCategory();
 }
 
-void FEasyPlacementModeModule::RegisterPlacementCategory(const UEasyPlacementModeSettings& Settings)
+void FEzPlacementModeModule::RegisterPlacementCategory(const UEzPlacementModeSettings& Settings)
 {
 	IPlacementModeModule& PlacementModeModule = IPlacementModeModule::Get();
 
@@ -40,7 +44,7 @@ void FEasyPlacementModeModule::RegisterPlacementCategory(const UEasyPlacementMod
 
 		const FName UniqueID = Category.GetHandle();
 
-		const FPlacementCategoryInfo CategoryInfo(Category.Name, FSlateIcon(FAppStyle::GetAppStyleSetName(), "PlacementBrowser.Icons.Basic"), UniqueID, TEXT("PMEzPlacementMode"), Category.Priority);
+		const FPlacementCategoryInfo CategoryInfo(Category.Name, FSlateIcon(FEzPlacementModeStyleSet::NAME_StyleSetName, "Icons.Category"), UniqueID, TEXT("PMEzPlacementMode"), Category.Priority);
 		if (!PlacementModeModule.RegisterPlacementCategory(CategoryInfo))
 		{
 			continue;
@@ -48,11 +52,11 @@ void FEasyPlacementModeModule::RegisterPlacementCategory(const UEasyPlacementMod
 
 		RegisteredCategories.Add(UniqueID);
 
-		for (int32 Index = 0; Index < Category.Classes.Num(); Index++)
+		for (int32 Index = 0; Index < Category.Actors.Num(); Index++)
 		{
-			if (UObject* Object = Category.Classes[Index].TryLoad())
+			if (UObject* ActorObject = Category.Actors[Index].TryLoad())
 			{
-				const FAssetData AssetData(Object);
+				const FAssetData AssetData(ActorObject);
 
 				UActorFactory* ActorFactory = GEditor ? GEditor->FindActorFactoryForActorClass(AssetData.GetClass()) : nullptr;
 
@@ -63,7 +67,7 @@ void FEasyPlacementModeModule::RegisterPlacementCategory(const UEasyPlacementMod
 	}
 }
 
-void FEasyPlacementModeModule::UnregisterPlacementCategory()
+void FEzPlacementModeModule::UnregisterPlacementCategory()
 {
 	if (IPlacementModeModule::IsAvailable())
 	{
@@ -76,11 +80,11 @@ void FEasyPlacementModeModule::UnregisterPlacementCategory()
 	RegisteredCategories.Empty();
 }
 
-void FEasyPlacementModeModule::HandleSettingsChanged(UObject* Object, struct FPropertyChangedEvent& PropertyChangedEvent)
+void FEzPlacementModeModule::HandleSettingsChanged(UObject* Object, struct FPropertyChangedEvent& PropertyChangedEvent)
 {
 	UnregisterPlacementCategory();
 
-	UEasyPlacementModeSettings* Settings = GetMutableDefault<UEasyPlacementModeSettings>();
+	UEzPlacementModeSettings* Settings = GetMutableDefault<UEzPlacementModeSettings>();
 	if (Settings != nullptr)
 	{
 		RegisterPlacementCategory(*Settings);
@@ -89,4 +93,4 @@ void FEasyPlacementModeModule::HandleSettingsChanged(UObject* Object, struct FPr
 
 #undef LOCTEXT_NAMESPACE
 
-IMPLEMENT_MODULE(FEasyPlacementModeModule, EasyPlacementMode)
+IMPLEMENT_MODULE(FEzPlacementModeModule, EzPlacementMode)

@@ -2,16 +2,16 @@
 
 using UnrealBuildTool;
 
-public class EasyPlacementMode : ModuleRules
+public class EzPlacementMode : ModuleRules
 {
-	public EasyPlacementMode(ReadOnlyTargetRules Target) : base(Target)
+	public EzPlacementMode(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PrivateIncludePaths.AddRange(
 			new string[] 
 			{
-				"EasyPlacementMode/Private",
+				"EzPlacementMode/Private",
 			});
 
 		PublicDependencyModuleNames.AddRange(
@@ -30,7 +30,8 @@ public class EasyPlacementMode : ModuleRules
 				"SlateCore",
 				"UnrealEd",
 				"DeveloperSettings",
-				"PlacementMode"
+				"PlacementMode",
+				"Projects",
 			});
 	}
 }
