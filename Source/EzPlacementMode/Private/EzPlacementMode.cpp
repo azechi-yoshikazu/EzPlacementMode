@@ -14,9 +14,10 @@
 
 void FEzPlacementModeModule::StartupModule()
 {
-	StyleSet = MakeShared<FEzPlacementModeStyleSet>();
-
 	UEzPlacementModeSettings* Settings = GetMutableDefault<UEzPlacementModeSettings>();
+
+	StyleSet = MakeShared<FEzPlacementModeStyleSet>(Settings);
+
 	if (Settings != nullptr)
 	{
 		RegisterPlacementCategory(*Settings);
@@ -43,8 +44,9 @@ void FEzPlacementModeModule::RegisterPlacementCategory(const UEzPlacementModeSet
 		}
 
 		const FName UniqueID = Category.GetHandle();
+		const FName& StyleName = (Category.ThumbnailResource != nullptr) ? UniqueID : FEzPlacementModeStyleSet::NAME_DefaultStyleName;
 
-		const FPlacementCategoryInfo CategoryInfo(Category.Name, FSlateIcon(FEzPlacementModeStyleSet::NAME_StyleSetName, "Icons.Category"), UniqueID, TEXT("PMEzPlacementMode"), Category.Priority);
+		const FPlacementCategoryInfo CategoryInfo(Category.Name, FSlateIcon(FEzPlacementModeStyleSet::NAME_StyleSetName, StyleName), UniqueID, TEXT("PMEzPlacementMode"), Category.Priority);
 		if (!PlacementModeModule.RegisterPlacementCategory(CategoryInfo))
 		{
 			continue;
@@ -87,6 +89,8 @@ void FEzPlacementModeModule::HandleSettingsChanged(UObject* Object, struct FProp
 	UEzPlacementModeSettings* Settings = GetMutableDefault<UEzPlacementModeSettings>();
 	if (Settings != nullptr)
 	{
+		StyleSet.Reset();
+		StyleSet = MakeShared<FEzPlacementModeStyleSet>(Settings);
 		RegisterPlacementCategory(*Settings);
 	}
 }
