@@ -17,7 +17,7 @@ struct FEzPlacementCategory
 	// This category's display name
 	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode")
 	FText Name;
-	// this category's priority (lowest first)
+	// This category's priority (lowest first)
 	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode")
 	int32 Priority = 100;
 	// A list of actors to display in this category
@@ -26,11 +26,16 @@ struct FEzPlacementCategory
 	// This category's thumbnail
 	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (AllowPrivateAccess = "true", DisplayThumbnail = "true", DisplayName = "Thumbnail", AllowedClasses = "/Script/Engine.Texture,/Script/Engine.MaterialInterface,/Script/Engine.SlateTextureAtlasInterface", DisallowedClasses = "/Script/MediaAssets.MediaTexture"))
 	TObjectPtr<UObject> ThumbnailResource;
+	// This category's thumbnail color
+	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode")
+	FLinearColor ThumbnailColor = DefaultThumbnailColor;
 
 	FName GetHandle() const
 	{
 		return FName(Name.ToString());
 	}
+
+	static const FLinearColor DefaultThumbnailColor;
 };
 
 /**
