@@ -8,8 +8,9 @@ class FEzPlacementModeStyleSet : public FSlateStyleSet
 {
 public:
 	static const FName NAME_StyleSetName;
+	static const FName NAME_DefaultStyleName;
 
 public:
-	FEzPlacementModeStyleSet();
+	FEzPlacementModeStyleSet(const class UEzPlacementModeSettings* const InSettings);
 	~FEzPlacementModeStyleSet();
 };
