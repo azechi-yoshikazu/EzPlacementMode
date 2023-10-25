@@ -23,6 +23,9 @@ struct FEzPlacementCategory
 	// A list of actors to display in this category
 	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (MetaClass = "Actor", OnlyPlaceable))
 	TArray<FSoftClassPath> Actors;
+	// This category's thumbnail
+	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (AllowPrivateAccess = "true", DisplayThumbnail = "true", DisplayName = "Thumbnail", AllowedClasses = "/Script/Engine.Texture,/Script/Engine.MaterialInterface,/Script/Engine.SlateTextureAtlasInterface", DisallowedClasses = "/Script/MediaAssets.MediaTexture"))
+	TObjectPtr<UObject> ThumbnailResource;
 
 	FName GetHandle() const
 	{
