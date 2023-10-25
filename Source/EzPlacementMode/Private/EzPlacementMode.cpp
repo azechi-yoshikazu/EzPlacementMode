@@ -4,7 +4,7 @@
 
 // Engine
 #include "Editor.h"
-#include "PlacementMode/Public/IPlacementModeModule.h"
+#include "IPlacementModeModule.h"
 
 // EzPlacementMode
 #include "EzPlacementModeSettings.h"
@@ -44,7 +44,7 @@ void FEzPlacementModeModule::RegisterPlacementCategory(const UEzPlacementModeSet
 		}
 
 		const FName UniqueID = Category.GetHandle();
-		const FName& StyleName = (Category.ThumbnailResource != nullptr) ? UniqueID : FEzPlacementModeStyleSet::NAME_DefaultStyleName;
+		const FName& StyleName = (Category.IconResource != nullptr) ? UniqueID : FEzPlacementModeStyleSet::NAME_DefaultStyleName;
 
 		const FPlacementCategoryInfo CategoryInfo(Category.Name, FSlateIcon(FEzPlacementModeStyleSet::NAME_StyleSetName, StyleName), UniqueID, TEXT("PMEzPlacementMode"), Category.Priority);
 		if (!PlacementModeModule.RegisterPlacementCategory(CategoryInfo))

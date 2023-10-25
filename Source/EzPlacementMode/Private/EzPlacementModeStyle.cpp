@@ -21,15 +21,15 @@ FEzPlacementModeStyleSet::FEzPlacementModeStyleSet(const class UEzPlacementModeS
 
 	SetContentRoot(BaseDir / TEXT("Editor/Slate"));
 
-	Set(NAME_DefaultStyleName, new FSlateImageBrush(RootToContentDir("Icons/Category", TEXT(".png")), FVector2D(16.0f, 16.0f), FEzPlacementCategory::DefaultThumbnailColor));
+	Set(NAME_DefaultStyleName, new FSlateImageBrush(RootToContentDir("Icons/Category", TEXT(".png")), FVector2D(16.0f, 16.0f), FEzPlacementCategory::DefaultIconColor));
 
 	if (InSettings)
 	{
 		for (const auto& Category : InSettings->Categories)
 		{
-			if (Category.ThumbnailResource)
+			if (Category.IconResource)
 			{
-				Set(Category.GetHandle(), new FSlateImageBrush(Category.ThumbnailResource, FVector2D(16.0f, 16.0f), Category.ThumbnailColor));
+				Set(Category.GetHandle(), new FSlateImageBrush(Category.IconResource, FVector2D(16.0f, 16.0f), Category.IconColor));
 			}
 		}
 	}

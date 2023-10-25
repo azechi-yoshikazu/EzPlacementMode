@@ -12,44 +12,44 @@
 USTRUCT()
 struct FEzPlacementCategory
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-	// This category's display name
-	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode")
-	FText Name;
-	// This category's priority (lowest first)
-	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode")
-	int32 Priority = 100;
-	// A list of actors to display in this category
-	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (MetaClass = "Actor", OnlyPlaceable))
-	TArray<FSoftClassPath> Actors;
-	// This category's thumbnail
-	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (AllowPrivateAccess = "true", DisplayThumbnail = "true", DisplayName = "Thumbnail", AllowedClasses = "/Script/Engine.Texture,/Script/Engine.MaterialInterface,/Script/Engine.SlateTextureAtlasInterface", DisallowedClasses = "/Script/MediaAssets.MediaTexture"))
-	TObjectPtr<UObject> ThumbnailResource;
-	// This category's thumbnail color
-	UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode")
-	FLinearColor ThumbnailColor = DefaultThumbnailColor;
+    // This category's display name
+    UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode")
+    FText Name;
+    // This category's priority (lowest first)
+    UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode")
+    int32 Priority = 100;
+    // A list of actors to display in this category
+    UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (MetaClass = "Actor", OnlyPlaceable))
+    TArray<FSoftClassPath> Actors;
+    // This category's icon
+    UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (AllowPrivateAccess = "true", DisplayThumbnail = "true", DisplayName = "Icon", AllowedClasses = "/Script/Engine.Texture,/Script/Engine.MaterialInterface,/Script/Engine.SlateTextureAtlasInterface", DisallowedClasses = "/Script/MediaAssets.MediaTexture"))
+    TObjectPtr<UObject> IconResource;
+    // This category's thumbnail color
+    UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (EditCondition = "IconResource != nullptr"))
+    FLinearColor IconColor = DefaultIconColor;
 
-	FName GetHandle() const
-	{
-		return FName(Name.ToString());
-	}
+    FName GetHandle() const
+    {
+        return FName(Name.ToString());
+    }
 
-	static const FLinearColor DefaultThumbnailColor;
+    static const FLinearColor DefaultIconColor;
 };
 
 /**
  * A class that provides customization settings for placing objects in Project Settings for a user
  */
-UCLASS(config=Engine, defaultconfig, meta=(DisplayName="Ez Placement Mode"))
+UCLASS(config = Engine, defaultconfig, meta = (DisplayName = "Ez Placement Mode"))
 class UEzPlacementModeSettings : public UDeveloperSettings
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	UEzPlacementModeSettings(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+    UEzPlacementModeSettings(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 public:
-	UPROPERTY(config, EditDefaultsOnly, Category = "Ez Placement Mode")
-	TArray<FEzPlacementCategory> Categories;
+    UPROPERTY(config, EditDefaultsOnly, Category = "Ez Placement Mode")
+    TArray<FEzPlacementCategory> Categories;
 };
