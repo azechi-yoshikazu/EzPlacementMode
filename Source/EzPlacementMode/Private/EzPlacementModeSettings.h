@@ -21,7 +21,7 @@ struct FEzPlacementCategory
     UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode")
     int32 Priority = 100;
     // A list of actors to display in this category
-    UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (MetaClass = "Actor", OnlyPlaceable))
+    UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (MetaClass = "/Script/Engine.Actor", OnlyPlaceable))
     TArray<FSoftClassPath> Actors;
     // This category's icon
     UPROPERTY(EditDefaultsOnly, Category = "Ez Placement Mode", meta = (AllowPrivateAccess = "true", DisplayThumbnail = "true", DisplayName = "Icon", AllowedClasses = "/Script/Engine.Texture,/Script/Engine.MaterialInterface,/Script/Engine.SlateTextureAtlasInterface", DisallowedClasses = "/Script/MediaAssets.MediaTexture"))
